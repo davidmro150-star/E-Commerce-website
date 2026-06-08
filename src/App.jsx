@@ -3,6 +3,7 @@ import React from 'react'
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import RootLayout from './component/layout/RootLayout';
+import Home from './component/pages/Home';
 
 const App = () => {
 
@@ -12,7 +13,10 @@ const App = () => {
       Component: RootLayout,
       children: [
      
-        { index: true, Component: Home },
+        {
+          index: true,
+          Component: Home,
+        },
         
         
    ]

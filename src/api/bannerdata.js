@@ -1,0 +1,25 @@
+
+import BannerImage from "../assets/images/banner.png";
+
+export const BannerData = [
+
+  {
+    id: 1,
+    banner: BannerImage,
+    
+  },
+
+  {
+    id: 2,
+    banner: BannerImage,
+    
+  },
+    
+  {
+    id: 3,
+    banner: BannerImage,
+    
+  },
+
+
+]

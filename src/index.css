@@ -1,1 +1,20 @@
-@import "tailwindcss";
+@import "tailwindcss";@theme {
+  --font-jost: "Jost", sans-serif;
+}
+
+@theme {
+  --color-primary-black: #222222; 
+   --color-second-color: #B9A16B;
+   --color-primary-white: #FFFFFF;
+   --color-third: #767676;
+   --color-redcolor: #D6001C;
+   --color-browncolor:#C32929;
+}
+   
+.u-list{
+    @apply ml-14 flex gap-11;
+}
+
+.list-item{
+  @apply font-jost  leading-6 text-primary-black after:bg-primary-black relative text-sm font-medium after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:duration-300 hover:after:w-[40%] ;
+}
