@@ -11,6 +11,8 @@
    --color-browncolor:#C32929;
    --color-deepgreen: #074E37;
    --color-lightgreen:#86BC42;
+   --color-four: #F3E8D6;
+   --color-green:#6BAD0D;
 }
    
 .u-list{
@@ -18,5 +20,6 @@
 }
 
 .list-item{
-  @apply font-jost  leading-6 text-primary-white font-medium text-base after:bg-primary-black relative text-sm font-medium after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:duration-300 hover:after:w-[40%] ;
+  @apply font-jost  leading-6 text-primary-white font-medium text-base after:bg-primary-black relative text-sm font-medium after:content-[''] after:absolute after:bottom-0 
+  after:left-10  after:h-0.5 after:w-0 after:transition-all after:duration-300  hover:after:w-[40%] ;
 }

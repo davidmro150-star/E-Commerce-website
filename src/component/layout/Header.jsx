@@ -3,7 +3,7 @@ import React from 'react'
 
 import { navitems } from '../../api/navbardata';
 
-
+import filter from "../../../public/images/filter.png";
 import { Link } from 'react-router';
 import Container from '../ui/Container';
 import Image from '../common/Image';
@@ -20,7 +20,7 @@ const Header = () => {
         <Container>
 
           <div className='flex items-center justify-between py-5'>
-            <div className='flex items-center gap-10'>
+            <div className='flex items-center gap-6'>
                       <div className='flex items-center'>
               
               <Link to ="/">
@@ -34,13 +34,13 @@ const Header = () => {
             </div>
             {/* Searching Bar */}
 
-    <div className="flex items-center bg-white ">
+    <div className="flex items-center bg-white gap-50">
 
 
   <input
     type="text"
     placeholder="Search products"
-    className="flex px-4 py-3 focus:outline-none font-jost text-color-third font-regular text-base leading-6"
+    className="flex px-4 py-3 focus:outline-none font-jost text-color-third font-regular text-base leading-6 "
               />
                 <div className=" flex px-4 py-3 border-r gap-10 font-jost text-primary-black font-regular text-base leading-6">
                 <p>All Category</p>
@@ -64,9 +64,7 @@ const Header = () => {
 
 
             <ul className='flex items-center gap-8'>
-              <li>
-
-              </li>
+           
 
               <li>
                 <button>
@@ -112,6 +110,9 @@ const Header = () => {
                 </button>
                 <span className='font-jost bg-lightgreen text-primary-white rounded-full px-1.25 text-[10px] font-medium absolute bottom-0 left-3'>{ cartitems}</span>
               </li>
+              <button>
+              <Image src={filter} alt="icon"/>
+              </button>
             </ul>
             
 
