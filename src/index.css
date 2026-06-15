@@ -21,5 +21,13 @@
 
 .list-item{
   @apply font-jost  leading-6 text-primary-white font-medium text-base after:bg-primary-black relative text-sm font-medium after:content-[''] after:absolute after:bottom-0 
-  after:left-10  after:h-0.5 after:w-0 after:transition-all after:duration-300  hover:after:w-[40%] ;
+  after:left-0  after:h-0.5 after:w-0 after:transition-all after:duration-300  hover:after:w-[40%] ;
+}
+
+.swiper-pagination-bullet{
+  background:red !important;
+  opacity: 1 !important;
+}
+.swiper-pagination-bullet-active{
+  background: green !important;
 }
