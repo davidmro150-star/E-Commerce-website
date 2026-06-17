@@ -16,7 +16,7 @@ const Banner = () => {
 
   return (
     <>
-      <section className='relative bg-four'>
+      <section className='relative bg-four '>
         <Swiper 
 
           spaceBetween={0}
@@ -35,7 +35,7 @@ const Banner = () => {
           {BannerData.map((item) => (
             <SwiperSlide key={item.id} >
 
-              <Container className=' '>
+              <Container className=''>
 
                 <div className="flex items-center gap-33">
 
@@ -68,7 +68,7 @@ const Banner = () => {
           ))}
 
         </Swiper>
-        <button className='prev bg-white ml-5 absolute top-1/2 -translate-y-1/2 left-5 z-50 rounded-full p-4'><SlArrowLeft /></button>
+        <button className='prev bg-white ml-5 absolute top-1/2 -translate-y-1/2 left- z-50 rounded-full p-4'><SlArrowLeft /></button>
         <button className='next bg-white ml-5 absolute top-1/2 -translate-y-1/2 right-5 z-50 rounded-full p-4'><SlArrowRight /></button>
 
       </section>

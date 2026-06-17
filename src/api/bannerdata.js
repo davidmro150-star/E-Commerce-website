@@ -26,6 +26,15 @@ export const BannerData = [
     banner: BannerImage,
     
   },
+  {
+    id: 4,
+    title: "Fresh Hand-Picked Vegetables",
+    subtitle: "Everyday",
+    banner: BannerImage,
+    
+  },
+  
+  
 
 
 ]
