@@ -8,12 +8,14 @@ import Products from '../home/Products'
 const Home = () => {
   return (
     <>
+      {/*
       <Navbar />
+
       <Banner />
       <SupportFeatures />
       <Products/>
-     
-      
+
+      */}
     </>
   )
 }
