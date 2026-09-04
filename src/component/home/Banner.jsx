@@ -1,4 +1,4 @@
-import React from 'react'
+
 
 import banner from "../../../src/assets/images/banner.png";
 import Image from '../common/Image';
@@ -17,7 +17,7 @@ const Banner = () => {
   return (
     <>
       <section className='relative bg-four '>
-        <Swiper 
+        <Swiper
 
           spaceBetween={0}
           slidesPerView={1}
@@ -37,7 +37,7 @@ const Banner = () => {
 
               <Container className=''>
 
-                <div className="flex items-center gap-33">
+                <div className="flex flex-col md:flex-row items-center gap-8 md:gap-10 lg:gap-20 xl:gap-33">
 
                   {/* Banner Part Content */}
 
@@ -45,7 +45,7 @@ const Banner = () => {
                     <h2 className='font-jost font-medium text-base leading-6 text-lightgreen  ml-16.5 after:content-[] relative after:absolute after:-left-15 after:top-3 after:h-0.5 after:w-10 after:bg-green' >Shop our freshest</h2>
                     <h1 className='font-jost font-bold text-[50px] text-deepgreen leading-15 pt-2.75'>
                       {item.title}
-                      <span className='block font-jost font-bold text-[50px] text-lightgreen leading-15 pb-4.75'>
+                      <span className='block font-jost font-bold text-3xl sm:text-4xl md:text-[42px] lg:text-[50px] text-lightgreen leading-15 pb-4.75'>
                         {item.subtitle}
                       </span>
                     </h1>
@@ -55,8 +55,12 @@ const Banner = () => {
 
                   {/*  Image Part */}
 
-                  <div className='flex mt-31 mb-26.75'>
-                    <Image src={item.banner} alt="image" />
+                  <div className="w-full md:w-1/2 flex justify-center">
+                    <Image
+                      src={item.banner}
+                      alt="image"
+                      className="w-full max-w-[300px] sm:max-w-[380px] md:max-w-[450px] lg:max-w-[520px]"
+                    />
                   </div>
                 </div>
 
@@ -72,11 +76,12 @@ const Banner = () => {
         <button className='next bg-white ml-5 absolute top-1/2 -translate-y-1/2 right-5 z-50 rounded-full p-4'><SlArrowRight /></button>
 
       </section>
-     
+
     </>
 
 
   )
 }
 
-export default Banner
+export default Banner 
+ 

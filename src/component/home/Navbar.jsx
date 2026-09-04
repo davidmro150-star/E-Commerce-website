@@ -1,35 +1,95 @@
-import React from 'react'
-import { navitems } from '../../api/navbardata'
-import { Link } from 'react-router'
-import Container from '../ui/Container'
+import React from "react";
+import { navitems } from "../../api/navbardata";
+import { Link } from "react-router";
+import Container from "../ui/Container";
 
-const Navbar = () => {
+const Navbar = ({ mobileMenu }) => {
   return (
-    <section className='bg-lightgreen'>
+    <section
+      className={`
+        bg-lightgreen w-full
+        ${mobileMenu ? "block" : "hidden"}
+        md:block
+      `}
+    >
       <Container>
-        <div className=''> 
-             <ul className= "flex items-center  gap-11 pt-5.25 pb-3.75 ">
-      
-            {
-              navitems?.map((item, index) => (
-                <li className="list-item" key={item.id}>
-                  <Link to={item.url}>{item.name}</Link>
-                   
-                  </li>
-              ))
-            }
-            <div className='flex gap-10 ml-auto font-jost  leading-6 text-primary-white font-medium text-base '>
-              <li>SPECIAL OFFER </li>
-              <li> PURCHASE THEME</li>
-            </div>
-          </ul> 
-       
-        </div>
- 
-      </Container>
-     
-    </section>
-  )
-}
+        <div className="w-full">
+          <ul
+            className="
+              flex flex-wrap items-center
+              gap-3
+              sm:gap-5
+              md:gap-7
+              lg:gap-11
+              py-2
+              sm:py-3
+              md:py-3.5
+              lg:pt-5.25
+              lg:pb-3.75
+            "
+          >
+            {navitems?.map((item) => (
+              <li
+                key={item.id}
+                className="
+                  shrink-0
+                  list-none
+                  font-jost
+                  text-primary-white
+                  font-medium
+                  text-xs
+                  sm:text-sm
+                  md:text-sm
+                  lg:text-base
+                  leading-5
+                  md:leading-6
+                "
+              >
+                <Link
+                  to={item.url}
+                  className="block whitespace-nowrap hover:opacity-80 transition"
+                >
+                  {item.name}
+                </Link>
+              </li>
+            ))}
 
-export default Navbar
+            <li
+              className="
+                shrink-0
+                list-none
+                font-jost
+                text-primary-white
+                font-medium
+                text-xs
+                sm:text-sm
+                md:text-sm
+                lg:text-base
+              "
+            >
+              SPECIAL OFFER
+            </li>
+
+            <li
+              className="
+                shrink-0
+                list-none
+                font-jost
+                text-primary-white
+                font-medium
+                text-xs
+                sm:text-sm
+                md:text-sm
+                lg:text-base
+              "
+            >
+              PURCHASE THEME
+            </li>
+          </ul>
+        </div>
+      </Container>
+    </section>
+  );
+};
+
+export default Navbar;
