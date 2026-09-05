@@ -7,27 +7,31 @@ const Navbar = ({ mobileMenu }) => {
   return (
     <section
       className={`
-        bg-lightgreen w-full
+        bg-lightgreen
+        w-full
         ${mobileMenu ? "block" : "hidden"}
         md:block
       `}
     >
       <Container>
-        <div className="w-full">
-          <ul
-            className="
-              flex flex-wrap items-center
-              gap-3
-              sm:gap-5
-              md:gap-7
-              lg:gap-11
-              py-2
-              sm:py-3
-              md:py-3.5
-              lg:pt-5.25
-              lg:pb-3.75
-            "
-          >
+
+        <ul
+          className="
+            flex
+            w-full
+            items-center
+            justify-between
+            py-2
+            sm:py-3
+            md:py-3.5
+            lg:pt-5.25
+            lg:pb-3.75
+          "
+        >
+
+          {/* LEFT SIDE */}
+          <div className="flex items-center gap-3 sm:gap-5 md:gap-7 lg:gap-11">
+
             {navitems?.map((item) => (
               <li
                 key={item.id}
@@ -47,17 +51,29 @@ const Navbar = ({ mobileMenu }) => {
               >
                 <Link
                   to={item.url}
-                  className="block whitespace-nowrap hover:opacity-80 transition"
+                  className="
+                    block
+                    whitespace-nowrap
+                    transition
+                    hover:opacity-80
+                  "
                 >
                   {item.name}
                 </Link>
               </li>
             ))}
 
+          </div>
+
+
+          {/* RIGHT SIDE */}
+          <div className="flex items-center gap-10">
+
             <li
               className="
                 shrink-0
                 list-none
+                whitespace-nowrap
                 font-jost
                 text-primary-white
                 font-medium
@@ -74,6 +90,7 @@ const Navbar = ({ mobileMenu }) => {
               className="
                 shrink-0
                 list-none
+                whitespace-nowrap
                 font-jost
                 text-primary-white
                 font-medium
@@ -85,8 +102,11 @@ const Navbar = ({ mobileMenu }) => {
             >
               PURCHASE THEME
             </li>
-          </ul>
-        </div>
+
+          </div>
+
+        </ul>
+
       </Container>
     </section>
   );

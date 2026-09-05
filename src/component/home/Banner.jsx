@@ -1,87 +1,257 @@
-
-
+import React, { useRef } from 'react';
 import banner from "../../../src/assets/images/banner.png";
 import Image from '../common/Image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import "swiper/css/pagination";
-import "swiper/css/navigation";
 import { BannerData } from '../../api/bannerdata';
-import { Navigation, Pagination } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import { SlArrowLeft } from "react-icons/sl";
 import { SlArrowRight } from "react-icons/sl";
 import Container from '../ui/Container';
 
 const Banner = () => {
+  // Create a reference to control the Swiper instance directly
+  const swiperRef = useRef(null);
 
   return (
     <>
-      <section className='relative bg-four '>
-        <Swiper
+      <section className="relative bg-four  w-full">
+        <Container className="relative">
 
-          spaceBetween={0}
-          slidesPerView={1}
-          loop={true}
-          modules={[Navigation, Pagination]}
-          navigation={{
-            prevEl: '.prev',
-            nextEl: '.next',
-          }}
-          pagination={{ clickable: true }}
-        >
+          <Swiper
+            spaceBetween={0}
+            slidesPerView={1}
+            loop={true}
+            modules={[Pagination]}
+            pagination={{ clickable: true }}
+            onSwiper={(swiper) => {
+              // Store the swiper instance in our ref
+              swiperRef.current = swiper;
+            }}
+            className="w-full pb-12 md:pb-0"
+          >
+            {BannerData.map((item) => (
+              <SwiperSlide key={item.id}>
+                <div
+                  className="
+                    flex
+                    flex-col
+                    items-center
+                    gap-8
+                    px-8
+                    py-12
 
+                    md:flex-row
+                    md:gap-6
+                    md:px-16
+                    md:py-20
 
+                    lg:gap-12
+                    lg:px-0
+                  "
+                >
+                  {/* CONTENT */}
+                  <div
+                    className="
+                      flex
+                      flex-col
+                      w-full
+                      order-2
+                      text-center
 
-          {BannerData.map((item) => (
-            <SwiperSlide key={item.id} >
+                      md:order-1
+                      md:w-1/2
+                      md:text-left
 
-              <Container className=''>
+                      lg:w-auto
+                    "
+                  >
+                    <h2 className="font-jost font-medium text-base leading-6 text-lightgreen">
+                      Shop our freshest
+                    </h2>
 
-                <div className="flex flex-col md:flex-row items-center gap-8 md:gap-10 lg:gap-20 xl:gap-33">
+                    <h1
+                      className="
+                        font-jost
+                        font-bold
+                        text-[30px]
+                        leading-[1.15]
+                        text-deepgreen
 
-                  {/* Banner Part Content */}
-
-                  <div className='flex flex-col mt-44 '>
-                    <h2 className='font-jost font-medium text-base leading-6 text-lightgreen  ml-16.5 after:content-[] relative after:absolute after:-left-15 after:top-3 after:h-0.5 after:w-10 after:bg-green' >Shop our freshest</h2>
-                    <h1 className='font-jost font-bold text-[50px] text-deepgreen leading-15 pt-2.75'>
+                        sm:text-[30px]
+                        md:text-[35px]
+                        2xl:text-[50px]
+                      "
+                    >
                       {item.title}
-                      <span className='block font-jost font-bold text-3xl sm:text-4xl md:text-[42px] lg:text-[50px] text-lightgreen leading-15 pb-4.75'>
+
+                      <span
+                        className="
+                          block
+                          font-jost
+                          font-bold
+                          text-2xl
+                          text-lightgreen
+                          leading-[1.15]
+
+                          sm:text-3xl
+                          md:text-4xl
+                          lg:text-[50px]
+                        "
+                      >
                         {item.subtitle}
                       </span>
                     </h1>
-                    <p className='font-jost font-medium text-base text-primary-black mb-30.75 after:content-[] relative after:absolute after:-left-0 after:top-6 after:h-0.5 after:w-28 after:bg-primary-black'>DISCOVER MORE</p>
 
+                    <p className="font-jost font-medium text-base text-primary-black mt-4">
+                      DISCOVER MORE
+                    </p>
                   </div>
 
-                  {/*  Image Part */}
+                  {/* IMAGE */}
+                  <div
+                    className="
+                      flex
+                      w-full
+                      justify-center
+                      order-1
 
-                  <div className="w-full md:w-1/2 flex justify-center">
+                      md:order-2
+                      md:w-1/2
+                    "
+                  >
                     <Image
                       src={item.banner}
                       alt="image"
-                      className="w-full max-w-[300px] sm:max-w-[380px] md:max-w-[450px] lg:max-w-[520px]"
+                      className="
+                        w-full
+                        h-auto
+                        object-contain
+                        max-w-[240px]
+                        sm:max-w-[300px]
+                        md:max-w-[360px]
+                        lg:max-w-[500px]
+                      "
                     />
                   </div>
                 </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
 
+          {/* ========================================================= */}
+          {/* SET 1: MOBILE & TABLET BUTTONS (Hidden on Desktop)       */}
+          {/* ========================================================= */}
+          <button
+            type="button"
+            onClick={() => swiperRef.current?.slidePrev()}
+            className="
+              absolute
+              top-1/2
+              z-50
+              flex
+              h-10
+              w-10
+              -translate-y-1/2
+              items-center
+              justify-center
+              rounded-full
+              bg-white
+              shadow-md
+              cursor-pointer
+              
+              left-2
+              md:left-4
+                2xl:hidden
+            "
+          >
+            <SlArrowLeft size={18} />
+          </button>
 
-              </Container>
-            </SwiperSlide>
+          <button
+            type="button"
+            onClick={() => swiperRef.current?.slideNext()}
+            className="
+              absolute
+              top-1/2
+              z-50
+              flex
+              h-10
+              w-10
+              -translate-y-1/2
+              items-center
+              justify-center
+              rounded-full
+              bg-white
+              shadow-md
+              cursor-pointer
 
+              right-2
+              md:right-4
+           2xl:hidden
+            "
+          >
+            <SlArrowRight size={18} />
+          </button>
 
-          ))}
+          {/* ========================================================= */}
+          {/* SET 2: DESKTOP BUTTONS (Hidden on Mobile & Tablet)       */}
+          {/* ========================================================= */}
+          <button
+            type="button"
+            onClick={() => swiperRef.current?.slidePrev()}
+            className="
+              absolute
+              top-1/2
+              z-50
+              h-10
+              w-10
+              -translate-y-1/2
+              items-center
+              justify-center
+              rounded-full
+              bg-white
+              shadow-md
+              cursor-pointer
 
-        </Swiper>
-        <button className='prev bg-white ml-5 absolute top-1/2 -translate-y-1/2 left- z-50 rounded-full p-4'><SlArrowLeft /></button>
-        <button className='next bg-white ml-5 absolute top-1/2 -translate-y-1/2 right-5 z-50 rounded-full p-4'><SlArrowRight /></button>
+              hidden
+              lg:flex
+              lg:left-[-60px]
+            "
+          >
+            <SlArrowLeft size={18} />
+          </button>
 
+          <button
+            type="button"
+            onClick={() => swiperRef.current?.slideNext()}
+            className="
+              absolute
+              top-1/2
+              z-50
+              h-10
+              w-10
+              -translate-y-1/2
+              items-center
+              justify-center
+              rounded-full
+              bg-white
+              shadow-md
+              cursor-pointer
+
+              hidden
+              lg:flex
+              lg:right-[-60px]
+            "
+          >
+            <SlArrowRight size={18} />
+          </button>
+
+        </Container>
       </section>
-
     </>
-
-
   )
 }
 
-export default Banner 
- 
+export default Banner;
