@@ -4,6 +4,10 @@ import Navbar from '../home/Navbar'
 import Banner from '../home/Banner'
 import SupportFeatures from '../home/SupportFeatures'
 
+
+import Products from '../home/Products'
+import ProductCard from '../home/ProductCard'
+
 const Home = () => {
   return (
     <>
@@ -11,8 +15,10 @@ const Home = () => {
       
       <Navbar />
       <Banner />
-      <SupportFeatures/>
-    </>
+      <SupportFeatures />
+      <Products/>
+      <ProductCard/>
+  </>
   )
 }
 
