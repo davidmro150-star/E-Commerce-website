@@ -4,6 +4,7 @@ import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import RootLayout from './component/layout/RootLayout';
 import Home from './component/pages/Home';
+import Shop from './shop/shop';
 
 const App = () => {
 
@@ -17,7 +18,14 @@ const App = () => {
           index: true,
           Component: Home,
         },
-        
+        {
+          path: "/shop",
+          element: Shop,
+        },
+        {
+          path: "/shop/:category",
+          element: <shop />,
+        },
         
    ]
   },

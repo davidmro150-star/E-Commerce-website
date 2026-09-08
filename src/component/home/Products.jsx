@@ -1,9 +1,8 @@
-
 import React, { useEffect, useMemo, useState } from "react";
 import Container from "../ui/Container";
 import ProductCard from "./ProductCard";
 
-const Products = () => {
+const Products = ({ selectedCategory = "all" }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -26,9 +25,16 @@ const Products = () => {
       setLoading(true);
       setError("");
 
-      const response = await fetch(
-        "https://dummyjson.com/products?limit=100"
-      );
+      // ================= API URL =================
+      let url = "https://dummyjson.com/products?limit=100";
+
+      // If a category is selected,
+      // fetch ONLY that category
+      if (selectedCategory !== "all") {
+        url = `https://dummyjson.com/products/category/${selectedCategory}`;
+      }
+
+      const response = await fetch(url);
 
       if (!response.ok) {
         throw new Error("Failed to fetch products");
@@ -46,9 +52,10 @@ const Products = () => {
     }
   };
 
+  // ================= FETCH WHEN CATEGORY CHANGES =================
   useEffect(() => {
     fetchProducts();
-  }, []);
+  }, [selectedCategory]);
 
   // ================= ADD TO CART =================
   const handleAddToCart = (product) => {
@@ -61,9 +68,9 @@ const Products = () => {
         return previousItems.map((item) =>
           item.id === product.id
             ? {
-                ...item,
-                quantity: item.quantity + 1,
-              }
+              ...item,
+              quantity: item.quantity + 1,
+            }
             : item
         );
       }
@@ -91,9 +98,7 @@ const Products = () => {
     }
 
     switch (activeFilter) {
-      // --------------------------------
       // BEST SELLERS
-      // --------------------------------
       case "Best Sellers":
         return [...products]
           .sort(
@@ -102,9 +107,7 @@ const Products = () => {
           )
           .slice(0, 10);
 
-      // --------------------------------
       // MOST POPULAR
-      // --------------------------------
       case "Most Popular":
         return [...products]
           .sort(
@@ -113,9 +116,7 @@ const Products = () => {
           )
           .slice(0, 10);
 
-      // --------------------------------
       // BEST 20
-      // --------------------------------
       case "Best 20":
         return [...products]
           .sort(
@@ -125,9 +126,7 @@ const Products = () => {
           )
           .slice(0, 20);
 
-      // --------------------------------
       // BEST RATED
-      // --------------------------------
       case "Best Rated":
         return [...products]
           .sort(
@@ -140,6 +139,12 @@ const Products = () => {
         return products.slice(0, 10);
     }
   }, [products, activeFilter]);
+
+  // ================= CATEGORY TITLE =================
+  const categoryTitle =
+    selectedCategory === "all"
+      ? "Featured Products"
+      : `${selectedCategory} Products`;
 
   return (
     <section>
@@ -192,7 +197,7 @@ const Products = () => {
                 md:text-[20px]
               "
             >
-              Featured Products
+              {categoryTitle}
             </h2>
           </div>
 
@@ -219,28 +224,27 @@ const Products = () => {
                   type="button"
                   onClick={() => setActiveFilter(option)}
                   className={`
-shrink - 0
-rounded - sm
-border
-px - 2.5
-py - 1.5
-text - [9px]
-font - medium
-uppercase
-tracking - wide
-transition - all
-duration - 200
+                    shrink-0
+                    rounded-sm
+                    border
+                    px-2.5
+                    py-1.5
+                    text-[9px]
+                    font-medium
+                    uppercase
+                    tracking-wide
+                    transition-all
+                    duration-200
 
-sm: px - 3
-sm: py - 2
-sm: text - [10px]
+                    sm:px-3
+                    sm:py-2
+                    sm:text-[10px]
 
-                    ${
-  isActive
-    ? "border-[#86BC42] bg-[#86BC42] text-white"
-    : "border-[#dddddd] bg-white text-[#555555] hover:border-[#86BC42] hover:text-[#074E37]"
-}
-`}
+                    ${isActive
+                      ? "border-[#86BC42] bg-[#86BC42] text-white"
+                      : "border-[#dddddd] bg-white text-[#555555] hover:border-[#86BC42] hover:text-[#074E37]"
+                    }
+                  `}
                 >
                   {option}
                 </button>
@@ -310,20 +314,15 @@ sm: text - [10px]
                     bg-[#eeeeee]
 
                     sm:h-[155px]
-
                     md:h-[165px]
-
                     lg:h-[175px]
-
                     xl:h-[185px]
                   "
                 />
 
                 <div className="space-y-2 p-3">
                   <div className="h-2 w-1/3 animate-pulse bg-[#eeeeee]" />
-
                   <div className="h-3 w-4/5 animate-pulse bg-[#eeeeee]" />
-
                   <div className="h-3 w-1/2 animate-pulse bg-[#eeeeee]" />
                 </div>
               </div>
@@ -372,7 +371,6 @@ sm: text - [10px]
         {/* ================= PRODUCTS ================= */}
         {!loading && !error && (
           <>
-            {/* ACTIVE FILTER */}
             <div className="mb-3 flex items-center justify-between">
               <p
                 className="
@@ -438,4 +436,3 @@ sm: text - [10px]
 };
 
 export default Products;
-
