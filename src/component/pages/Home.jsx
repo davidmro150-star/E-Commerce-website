@@ -1,29 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 
-import Navbar from "../home/Navbar";
+import Navbar from "../layout/Navbar";
 import Banner from "../home/Banner";
 import SupportFeatures from "../home/SupportFeatures";
-
-import Products from "../home/Products";
 import Categories from "../home/categories";
-import ProductCard from "../home/ProductCard";
+import Products from "../home/Products";
+import TopSelling from "../home/Topselling";
 
 const Home = () => {
-  const [selectedCategory, setSelectedCategory] = useState("all");
-
   return (
     <>
-      <Navbar />
+    
 
       <Banner />
 
       <SupportFeatures />
-      <Products
-      <div>
-        <ProductCard/>
-      </div>
+      <Products/>
 
-    
+      <Categories />
+      <TopSelling/>
     </>
   );
 };
