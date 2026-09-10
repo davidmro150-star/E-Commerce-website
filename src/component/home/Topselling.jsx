@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
+import Container from "../ui/Container";
 
 const TopSelling = () => {
   // ================= ALL PRODUCTS =================
@@ -177,124 +178,68 @@ const TopSelling = () => {
 
   return (
     <section className="bg-white">
-      <div
-        className="
-          mx-auto
-          w-full
-          max-w-[1200px]
-          px-4
+      <Container>
+        <div
+          className="mx-auto px-4 sm:px-5 md:px-6 lg:px-8
+        "
+        >
+          {/* ================= HEADER ================= */}
 
-          sm:px-5
+     <div
+         className=" flex items-center justify-between pt-8 pb-5 sm:pt-10 sm:pb-6 md:pt-12 md:pb-7 lg:pt-12 lg:pb-6
+        "
+         >
+            {/* ================= TITLE ================= */}
 
-          md:px-6
-
-          lg:px-8
+       <h2
+        className=" font-jost text-sm font-medium uppercase tracking-wide text-[#222222] sm:text-base md:text-[17px]
         "
       >
-        {/* ================= HEADER ================= */}
+              Top Selling Products
+              
+        </h2>
 
-        <div
-          className="
-            flex
-            items-center
-            justify-between
-            pt-8
-            pb-5
+            {/* ================= VIEW BUTTONS ================= */}
 
-            sm:pt-10
-            sm:pb-6
+        {!loading && allProducts.length > 5 && (
+         <div
+         className="flex items-center  gap-3 sm:gap-4 "
+         >
+                {/* ================= VIEW LESS ================= */}
 
-            md:pt-12
-            md:pb-7
+        {canViewLess && (
+                  <button  type="button" onClick={handleViewLess} className=" flex items-center gap-1  font-jost  text-[10px]  font-medium  uppercase tracking-wide text-[#555555] transition-colors duration-200 hover:text-[#86BC42] sm:text-xs "
+                  >
+                    {/* Left Arrow */}
 
-            lg:pt-12
-            lg:pb-6
-          "
-        >
-          {/* ================= TITLE ================= */}
-
-          <h2
-            className="
-              font-jost
-              text-sm
-              font-medium
-              uppercase
-              tracking-wide
-              text-[#222222]
-
-              sm:text-base
-
-              md:text-[17px]
-            "
-          >
-            Top Selling Products
-          </h2>
-
-          {/* ================= VIEW BUTTONS ================= */}
-
-          {!loading && allProducts.length > 5 && (
-            <div
-              className="
-                flex
-                items-center
-                gap-3
-
-                sm:gap-4
-              "
-            >
-              {/* ================= VIEW LESS ================= */}
-
-              {canViewLess && (
-                <button
-                  type="button"
-                  onClick={handleViewLess}
-                  className="
-                    flex
-                    items-center
-                    gap-1
-                    font-jost
-                    text-[10px]
-                    font-medium
-                    uppercase
-                    tracking-wide
-                    text-[#555555]
-                    transition-colors
-                    duration-200
-                    hover:text-[#86BC42]
-
-                    sm:text-xs
-                  "
-                >
-                  {/* Left Arrow */}
-
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="
                       h-3
                       w-3
                       rotate-180
                     "
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M7.21 14.77a.75.75 0 01.02-1.06L10.94 10 7.23 6.29a.75.75 0 111.06-1.06l4.24 4.24a.75.75 0 010 1.06l-4.24 4.24a.75.75 0 01-1.06-.02z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M7.21 14.77a.75.75 0 01.02-1.06L10.94 10 7.23 6.29a.75.75 0 111.06-1.06l4.24 4.24a.75.75 0 010 1.06l-4.24 4.24a.75.75 0 01-1.06-.02z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
 
-                  View Less
-                </button>
-              )}
+                    View Less
+                  </button>
+                )}
 
-              {/* ================= VIEW ALL ================= */}
+                {/* ================= VIEW ALL ================= */}
 
-              {canViewMore && (
-                <button
-                  type="button"
-                  onClick={handleViewAll}
-                  className="
+                {canViewMore && (
+                  <button
+                    type="button"
+                    onClick={handleViewAll}
+                    className="
                     flex
                     items-center
                     gap-1
@@ -310,37 +255,37 @@ const TopSelling = () => {
 
                     sm:text-xs
                   "
-                >
-                  View All
+                  >
+                    View All
 
-                  {/* Right Arrow */}
+                    {/* Right Arrow */}
 
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="
                       h-3
                       w-3
                     "
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M7.21 14.77a.75.75 0 01.02-1.06L10.94 10 7.23 6.29a.75.75 0 111.06-1.06l4.24 4.24a.75.75 0 010 1.06l-4.24 4.24a.75.75 0 011.06-1.06l4.24 4.24a.75.75 0 010 1.06l-4.24 4.24a.75.75 0 01-1.06-.02z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-              )}
-            </div>
-          )}
-        </div>
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M7.21 14.77a.75.75 0 01.02-1.06L10.94 10 7.23 6.29a.75.75 0 111.06-1.06l4.24 4.24a.75.75 0 010 1.06l-4.24 4.24a.75.75 0 011.06-1.06l4.24 4.24a.75.75 0 010 1.06l-4.24 4.24a.75.75 0 01-1.06-.02z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                )}
+              </div>
+            )}
+          </div>
 
-        {/* ================= CART MESSAGE ================= */}
+          {/* ================= CART MESSAGE ================= */}
 
-        {cartItems.length > 0 && (
-          <div
-            className="
+          {cartItems.length > 0 && (
+            <div
+              className="
               mb-4
               rounded-sm
               border
@@ -354,17 +299,17 @@ const TopSelling = () => {
 
               sm:text-[11px]
             "
-          >
-            {cartItems.length} product
-            {cartItems.length > 1 ? "s" : ""} added to cart
-          </div>
-        )}
+            >
+              {cartItems.length} product
+              {cartItems.length > 1 ? "s" : ""} added to cart
+            </div>
+          )}
 
-        {/* ================= LOADING ================= */}
+          {/* ================= LOADING ================= */}
 
-        {loading && (
-          <div
-            className="
+          {loading && (
+            <div
+              className="
               grid
               grid-cols-2
               gap-3
@@ -384,22 +329,22 @@ const TopSelling = () => {
 
               xl:grid-cols-5
             "
-          >
-            {Array.from({ length: 5 }).map((_, index) => (
-              <div
-                key={index}
-                className="
+            >
+              {Array.from({ length: 5 }).map((_, index) => (
+                <div
+                  key={index}
+                  className="
                   min-w-0
                   overflow-hidden
                   border
                   border-[#eeeeee]
                   bg-white
                 "
-              >
-                {/* IMAGE SKELETON */}
+                >
+                  {/* IMAGE SKELETON */}
 
-                <div
-                  className="
+                  <div
+                    className="
                     h-[135px]
                     w-full
                     animate-pulse
@@ -413,48 +358,48 @@ const TopSelling = () => {
 
                     xl:h-[175px]
                   "
-                />
+                  />
 
-                {/* TEXT SKELETON */}
+                  {/* TEXT SKELETON */}
 
-                <div className="space-y-2 p-3">
-                  <div
-                    className="
+                  <div className="space-y-2 p-3">
+                    <div
+                      className="
                       h-2
                       w-1/3
                       animate-pulse
                       bg-[#eeeeee]
                     "
-                  />
+                    />
 
-                  <div
-                    className="
+                    <div
+                      className="
                       h-3
                       w-4/5
                       animate-pulse
                       bg-[#eeeeee]
                     "
-                  />
+                    />
 
-                  <div
-                    className="
+                    <div
+                      className="
                       h-3
                       w-1/2
                       animate-pulse
                       bg-[#eeeeee]
                     "
-                  />
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        )}
+              ))}
+            </div>
+          )}
 
-        {/* ================= ERROR ================= */}
+          {/* ================= ERROR ================= */}
 
-        {!loading && error && (
-          <div
-            className="
+          {!loading && error && (
+            <div
+              className="
               mb-10
               rounded-sm
               border
@@ -464,15 +409,15 @@ const TopSelling = () => {
               py-8
               text-center
             "
-          >
-            <p className="font-jost text-sm text-red-500">
-              {error}
-            </p>
+            >
+              <p className="font-jost text-sm text-red-500">
+                {error}
+              </p>
 
-            <button
-              type="button"
-              onClick={() => window.location.reload()}
-              className="
+              <button
+                type="button"
+                onClick={() => window.location.reload()}
+                className="
                 mt-3
                 rounded-sm
                 bg-[#074E37]
@@ -483,18 +428,18 @@ const TopSelling = () => {
                 font-medium
                 text-white
               "
-            >
-              Try Again
-            </button>
-          </div>
-        )}
+              >
+                Try Again
+              </button>
+            </div>
+          )}
 
-        {/* ================= PRODUCTS ================= */}
+          {/* ================= PRODUCTS ================= */}
 
-        {!loading && !error && (
-          <>
-            <div
-              className="
+          {!loading && !error && (
+            <>
+              <div
+                className="
                 grid
                 grid-cols-2
                 gap-3
@@ -514,42 +459,44 @@ const TopSelling = () => {
 
                 xl:grid-cols-5
               "
-            >
-              {visibleProducts.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  onAddToCart={handleAddToCart}
-                />
-              ))}
-            </div>
+              >
+                {visibleProducts.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    onAddToCart={handleAddToCart}
+                  />
+                ))}
+              </div>
 
-            {/* ================= PRODUCT COUNT ================= */}
+              {/* ================= PRODUCT COUNT ================= */}
 
-            {allProducts.length > 5 && (
-              <div className="pb-8 text-center">
-                <p
-                  className="
+              {allProducts.length > 5 && (
+                <div className="pb-8 text-center">
+                  <p
+                    className="
                     font-jost
                     text-[11px]
                     text-[#777777]
                   "
-                >
-                  Showing{" "}
-                  <span className="font-medium text-[#222222]">
-                    {visibleProducts.length}
-                  </span>{" "}
-                  of{" "}
-                  <span className="font-medium text-[#222222]">
-                    {allProducts.length}
-                  </span>{" "}
-                  products
-                </p>
-              </div>
-            )}
-          </>
-        )}
-      </div>
+                  >
+                    Showing{" "}
+                    <span className="font-medium text-[#222222]">
+                      {visibleProducts.length}
+                    </span>{" "}
+                    of{" "}
+                    <span className="font-medium text-[#222222]">
+                      {allProducts.length}
+                    </span>{" "}
+                    products
+                  </p>
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      </Container>
+      
     </section>
   );
 };

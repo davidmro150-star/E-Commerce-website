@@ -6,6 +6,7 @@ import SupportFeatures from "../home/SupportFeatures";
 import Categories from "../home/categories";
 import Products from "../home/Products";
 import TopSelling from "../home/Topselling";
+import Discount from "../home/Discount";
 
 const Home = () => {
   return (
@@ -18,7 +19,8 @@ const Home = () => {
       <Products/>
 
       <Categories />
-      <TopSelling/>
+      <TopSelling />
+      <Discount/>
     </>
   );
 };
