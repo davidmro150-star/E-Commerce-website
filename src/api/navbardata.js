@@ -1,33 +1,37 @@
 export const navitems = [
-  
-  
   {
     id: 1,
     name: "HOME",
-    url: "/"
+    url: "/",
   },
+
   {
-   id: 2,
+    id: 2,
     name: "SHOP",
-    url: "/SHOP"
+    url: "/shop",
   },
+
   {
-   id: 3,
-    name: "COLLECTION" ,
+    id: 3,
+    name: "COLLECTION",
+    url: "/collection",
   },
+
   {
-   id: 4,
-    name: "JOURNAL" ,
+    id: 4,
+    name: "JOURNAL",
+    url: "/journal",
   },
+
   {
     id: 5,
-    name: "LOOKBOOK" ,
+    name: "LOOKBOOK",
+    url: "/lookbook",
   },
+
   {
     id: 6,
-    name: "PAGES" ,
+    name: "PAGES",
+    url: "/pages",
   },
- 
-
-
-]
+];

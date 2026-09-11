@@ -7,20 +7,22 @@ import Categories from "../home/categories";
 import Products from "../home/Products";
 import TopSelling from "../home/Topselling";
 import Discount from "../home/Discount";
+import LatestBlog from "../home/LatestBlogs";
 
 const Home = () => {
   return (
     <>
-    
+
 
       <Banner />
 
       <SupportFeatures />
-      <Products/>
+      <Products />
 
       <Categories />
       <TopSelling />
-      <Discount/>
+      <Discount />
+      <LatestBlog/>
     </>
   );
 };

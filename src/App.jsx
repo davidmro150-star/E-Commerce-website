@@ -9,6 +9,9 @@ import {
 import RootLayout from "./component/layout/RootLayout";
 import Home from "./component/pages/Home";
 import Shop from "./shop/shop";
+import JournalPage from "./component/journal/JournalPage";
+
+
 
 const App = () => {
   const router = createBrowserRouter([
@@ -30,6 +33,10 @@ const App = () => {
         {
           path: "shop/:category",
           element: <Shop />,
+        },
+        {
+          path: "/journal",
+          element: <JournalPage />,
         },
       ],
     },

@@ -198,7 +198,7 @@ const Discount = () => {
     <div
           className=" h-[356px] w-[255px] rounded-xl bg-[#86BC42]">
     <div
-          className=" flex h-full  w-full flex-col items-center justify-cente  bg-[#074E37] px-6 text-center "
+          className=" flex h-full  w-full flex-col items-center justify-center  bg-[#074E37] px-6 text-center  "
           >
           <span
            className=" mb-3 text-sm font-medium text-[#86BC42]" >
@@ -423,7 +423,7 @@ const Discount = () => {
           </div>
           </>
           )}
-          
+
     </div>
     </Container>
     </section>
