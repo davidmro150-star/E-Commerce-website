@@ -180,7 +180,7 @@ const TopSelling = () => {
     <section className="bg-white">
       <Container>
         <div
-          className="mx-auto px-4 sm:px-5 md:px-6 lg:px-8
+          className="mx-auto w-full px-4 sm:px-5 md:px-6 lg:px-8
         "
         >
           {/* ================= HEADER ================= */}

@@ -1,8 +1,12 @@
+
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import Container from "../ui/Container";
 
 const Discount = () => {
+  // =========================
+  // STATES
+  // =========================
   const [allProducts, setAllProducts] = useState([]);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -10,10 +14,11 @@ const Discount = () => {
   const [cartItems, setCartItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
 
+  // Show 4 products at a time
   const productsPerPage = 4;
 
   // =========================
-  // Fetch Discount Products
+  // FETCH DISCOUNT PRODUCTS
   // =========================
   useEffect(() => {
     const fetchDiscountProducts = async () => {
@@ -37,7 +42,11 @@ const Discount = () => {
         );
 
         setAllProducts(discountProducts);
-        setProducts(discountProducts.slice(0, productsPerPage));
+
+        setProducts(
+          discountProducts.slice(0, productsPerPage)
+        );
+
         setCurrentPage(0);
       } catch (error) {
         console.error(error);
@@ -51,7 +60,7 @@ const Discount = () => {
   }, []);
 
   // =========================
-  // Add To Cart
+  // ADD TO CART
   // =========================
   const handleAddToCart = (product) => {
     setCartItems((previousItems) => {
@@ -59,17 +68,19 @@ const Discount = () => {
         (item) => item.id === product.id
       );
 
+      // Product already exists
       if (existingProduct) {
         return previousItems.map((item) =>
           item.id === product.id
             ? {
-              ...item,
-              quantity: item.quantity + 1,
-            }
+                ...item,
+                quantity: item.quantity + 1,
+              }
             : item
         );
       }
 
+      // New product
       return [
         ...previousItems,
         {
@@ -81,7 +92,7 @@ const Discount = () => {
   };
 
   // =========================
-  // Next Products
+  // NEXT PRODUCTS
   // =========================
   const handleNext = () => {
     const nextPage = currentPage + 1;
@@ -89,20 +100,25 @@ const Discount = () => {
     const startIndex = nextPage * productsPerPage;
     const endIndex = startIndex + productsPerPage;
 
+    // Stop if there are no more products
     if (startIndex >= allProducts.length) {
       return;
     }
 
-    const nextProducts = allProducts.slice(startIndex, endIndex);
+    const nextProducts = allProducts.slice(
+      startIndex,
+      endIndex
+    );
 
     setProducts(nextProducts);
     setCurrentPage(nextPage);
   };
 
   // =========================
-  // Previous Products
+  // PREVIOUS PRODUCTS
   // =========================
   const handlePrevious = () => {
+    // Already on first page
     if (currentPage === 0) {
       return;
     }
@@ -112,322 +128,378 @@ const Discount = () => {
     const startIndex = previousPage * productsPerPage;
     const endIndex = startIndex + productsPerPage;
 
-    const previousProducts = allProducts.slice(startIndex, endIndex);
+    const previousProducts = allProducts.slice(
+      startIndex,
+      endIndex
+    );
 
     setProducts(previousProducts);
     setCurrentPage(previousPage);
   };
 
   // =========================
-  // Pagination
+  // PAGINATION
   // =========================
   const totalPages = Math.ceil(
     allProducts.length / productsPerPage
   );
 
   const isFirstPage = currentPage === 0;
-  const isLastPage = currentPage >= totalPages - 1;
 
+  const isLastPage =
+    currentPage >= totalPages - 1;
+
+  // =========================
+  // RETURN
+  // =========================
   return (
     <section className="bg-white">
-    <Container>
-    <div
-          className="px-4 py-10 sm:px-6 sm:py-12 md:px-8 md:py-14 lg:px-0lg:py-16">
-          
+      <Container>
+        <div
+          className="
+            px-4
+            py-10
+            sm:px-6
+            sm:py-12
+            md:px-8
+            md:py-14
+            lg:px-0
+            lg:py-16
+          "
+        >
 
-          {/*Section Heading */}
+          {/* =========================
+              SECTION HEADING
+          ========================= */}
+          <div className="mb-8">
+            <p
+              className="
+                mb-2
+                text-sm
+                font-medium
+                text-gray-500
+                sm:text-base
+              "
+            >
+              Special Offers
+            </p>
 
-    <div className="mb-8">
-          <p
-          className=" mb-2 text-sm  font-medium text-gray-500 sm:text-base"
-           >
-          Special Offers
-          </p>
-
-          <h2 className="text-2xl font-semibold leading-tight text-gray-900 sm:text-3xl lg:text-4xl">
-              
-            Discount Products
-
-          </h2>
+            <h2
+              className="
+                text-2xl
+                font-semibold
+                leading-tight
+                text-gray-900
+                sm:text-3xl
+                lg:text-4xl
+              "
+            >
+              Discount Products
+            </h2>
           </div>
 
-          {/*  Loading */}
-
+          {/* =========================
+              LOADING
+          ========================= */}
           {loading && (
-            
-    <div className="  grid  grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4
-    "
-    >
-   {Array.from({ length: 4 }).map((_, index) => (
-       
-  <div
-     key={index}
-     className=" h-[356px] w-full animate-pulse rounded-xl bg-gray-100
-     "
-      />
-      ))}
-      </div>
-      )}
-
-          {/*  Error */}
-
-          {!loading && error && (
-
-   <div className=" rounded-lg  bg-red-50  px-5 py-6 text-center text-red-600 ">
-           {error}
+            <div
+              className="
+                grid
+                grid-cols-1
+                gap-5
+                sm:grid-cols-2
+                md:grid-cols-3
+                lg:grid-cols-4
+              "
+            >
+              {Array.from({ length: 4 }).map((_, index) => (
+                <div
+                  key={index}
+                  className="
+                    h-[356px]
+                    w-full
+                    animate-pulse
+                    rounded-xl
+                    bg-gray-100
+                  "
+                />
+              ))}
             </div>
           )}
 
-          {/* Products */}
+          {/* =========================
+              ERROR
+          ========================= */}
+          {!loading && error && (
+            <div
+              className="
+                rounded-lg
+                bg-red-50
+                px-5
+                py-6
+                text-center
+                text-red-600
+              "
+            >
+              {error}
+            </div>
+          )}
 
+          {/* =========================
+              PRODUCTS
+          ========================= */}
           {!loading && !error && (
             <>
-              {/*
-                  DESKTOP VERSION
-                  Exactly 5 columns
-                  Banner + 4 Products
-                  Each = 255px × 356px
+              {/* 
+                RESPONSIVE GRID
+
+                Mobile:
+                1 column
+
+                Small:
+                2 columns
+
+                Tablet:
+                3 columns
+
+                Desktop:
+                Banner + 4 products
               */}
 
-     <div className="relative hidden lg:block">
-                <div className="grid grid-cols-[255px_255px_255px_255px_255px] gap-5 " >
-                  
+              <div className="
 
-                  {/* Banner */}
+    grid
+    grid-cols-1
+    min-[400px]:grid-cols-2
+    md:grid-cols-5
+    gap-3
+    md:gap-4
+    lg:gap-5
+  "
 
-    <div
-          className=" h-[356px] w-[255px] rounded-xl bg-[#86BC42]">
-    <div
-          className=" flex h-full  w-full flex-col items-center justify-center  bg-[#074E37] px-6 text-center  "
-          >
-          <span
-           className=" mb-3 text-sm font-medium text-[#86BC42]" >
-                        Special Offer
+              >
+                {/* =========================
+      DISCOUNT BANNER
+  ========================= */}
 
-          </span>
-
-          <h3
-               className="text-2xl font-semibold leading-tight text-[#86BC42] ">
-                
-                        Get Up To
-
-        <br />
-                  50% Off
-        </h3>
-
-        <p
-        className=" mt-3 text-sm text-[#86BC42] " >
-                Limited time discount
-        </p>
-        </div>
-        </div>
-
-                  {/* Product 1*/}
-
-           {products[0] && (
-                    
-          <div className="h-[356px] w-[255px]">
-           <ProductCard
-                      product={products[0]}
-                      onAddToCart={handleAddToCart}
-                      />
-                      </div>
-                      )}
-
-                  {/* Product 2 */}
-
-           {products[1] && (
-          <div className="h-[356px] w-[255px]">
-              <ProductCard
-                  product={products[1]}
-                  onAddToCart={handleAddToCart}
-                />
-                </div>
-               )}
-
-                  {/*  Product 3 */}
-
-         {products[2] && (
-         <div className="h-[356px] w-[255px]">
-              <ProductCard
-                product={products[2]}
-                onAddToCart={handleAddToCart}
-              />
-              </div>
-              )}
-
-                  {/* Product 4 */}
-
-        {products[3] && (
-        <div className="h-[356px] w-[255px]">
-            <ProductCard
-              product={products[3]}
-              onAddToCart={handleAddToCart}
-            />
-            </div>
-           )}
-           </div>
-
-                {/*
-                    PREVIOUS BUTTON
-
-                    Position:
-                    After Banner + Product 1
-
-                    255 + 20 + 255 = 530px
-                */}
-
-     <button
-        type="button"
-        onClick={handlePrevious}
-        disabled={isFirstPage}
-        className={`absolute left-[530px] top-1/2 z-20 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2  items-center  justify-center rounded-full  border bg-white text-lg shadow-md transition
-    
-
-       ${isFirstPage
-         ? "cursor-not-allowed opacity-40"
-        : "cursor-pointer  hover:bg-[#86BC42] hover:text-white"
-        }
-        `}
-        >
-        ←
-        </button>
-
-                {/*
-                    NEXT BUTTON
-
-                    Position:
-                    After Product 4
-                */}
-
-     <button
-        type="button"
-        onClick={handleNext}
-        disabled={isLastPage}
-        className={`absolute  right-[-20px]  top-1/2 z-20  flex  h-10  w-10 -translate-y-1/2 items-center justify-center  rounded-full  border bg-white  text-lg  shadow-md transition
-
-       ${isLastPage
-        ? "cursor-not-allowed opacity-40"
-        : "cursor-pointer   hover:bg-[#86BC42] hover:text-white"
-        }
-        `}
-        >
-                  →
-        </button>
-        </div>
-
-              {/*TABLET VERSION*/}
-
-   <div className="hidden md:block lg:hidden">
-         <div
-         className="grid grid-cols-2 gap-5 " >
-                  {products.map((product) => (
-                  <div
-                  key={product.id}
+                <div
                   className="
-                    min-w-0
-                  "
+      flex
+      min-w-0
+      w-full
+      min-h-[220px]
+      rounded-xl
+      bg-[#074E37]
+
+      sm:min-h-[240px]
+      md:min-h-[260px]
+      lg:min-h-[300px]
+      xl:min-h-[330px]
+      2xl:min-h-[356px]
+    "
                 >
-               <ProductCard
-                        product={product}
-                        onAddToCart={handleAddToCart}
-                       />
-                       </div>
-                  ))}
-              </div>
+                  <div
+                    className="
+        flex
+        h-full
+        w-full
+        min-w-0
+        flex-col
+        items-center
+        justify-center
+      
+        px-2
+        text-center
 
-                {/* Tablet Buttons */}
+        sm:px-3
+        md:px-2
+        lg:px-3
+        xl:px-4
+      "
+                  >
+                    {/* SPECIAL OFFER */}
 
-   <div
-      className=" mt-6 flex items-center justify-center gap-4" >
-          <button
-              type="button"
-              onClick={handlePrevious}
-              disabled={isFirstPage}
-              className={` flex h-10 w-10 items-center justify-center  rounded-full border bg-white shadow-sm transition
+                    <span
+                      className="
+          mb-2
+          text-[10px]
+          font-medium
+          text-[#86BC42]
 
-              ${isFirstPage
-                ? "cursor-not-allowed opacity-40"
-                : "hover:bg-gray-100"
-              }
-             `}
-             >
-            ←
-           </button>
+          sm:text-[11px]
 
-            <button
-              type="button"
-              onClick={handleNext}
-              disabled={isLastPage}
-              className={` flex h-10 w-10 items-center  justify-center  rounded-full  border  bg-white shadow-sm transition
+          md:mb-1
+          md:text-[8px]
 
-                ${isLastPage
-                  ? "cursor-not-allowed opacity-40"
-                  : "hover:bg-gray-100"
-                }
-                `}
-                >
-                    →
-                </button>
+          lg:mb-2
+          lg:text-[10px]
+
+          xl:text-xs
+
+          2xl:mb-3
+          2xl:text-sm
+        "
+                    >
+                      Special Offer
+                    </span>
+
+                    {/* TITLE */}
+
+                    <h3
+                      className="
+          text-base
+          font-semibold
+          leading-tight
+          text-[#86BC42]
+
+          sm:text-lg
+
+          md:text-xs
+
+          lg:text-base
+
+          xl:text-xl
+
+          2xl:text-2xl
+        "
+                    >
+                      Get Up To
+                      <br />
+                      50% Off
+                    </h3>
+
+                    {/* DESCRIPTION */}
+
+                    <p
+                      className="
+          mt-2
+          text-[8px]
+          text-[#86BC42]
+
+          sm:text-[9px]
+
+          md:mt-1
+          md:text-[7px]
+
+          lg:mt-2
+          lg:text-[9px]
+
+          xl:text-xs
+
+          2xl:mt-3
+          2xl:text-sm
+        "
+                    >
+                      Limited time discount
+                    </p>
+                  </div>
                 </div>
-                </div>
 
-              {/* MOBILE VERSION */}
+                {/* =========================
+      PRODUCTS
+  ========================= */}
 
-    <div className="block md:hidden">
-                <div className="grid grid-cols-1 gap-5">
-                {products.map((product) => (
-                <div key={product.id} className="w-full">
-                <ProductCard
-                product={product}
-                onAddToCart={handleAddToCart}
-                 />
-                </div>
+                {products.slice(0, 4).map((product) => (
+                  <div
+                    key={product.id}
+                    className="
+        min-w-0
+        w-full
+      "
+                  >
+                    <ProductCard
+                      product={product}
+                      onAddToCart={handleAddToCart}
+                    />
+                  </div>
                 ))}
-                </div>
+              </div>
+              
 
-                {/* Mobile Buttons */}
 
-     <div className="mt-6 flex items-center justify-center  gap-4 " >
-         <button
-          type="button"
-          onClick={handlePrevious}
-          disabled={isFirstPage}
-          className={`flex h-10  w-10 items-center justify-center  rounded-full border bg-white shadow-sm transition
+              {/* =========================
+                  NAVIGATION BUTTONS
+              ========================= */}
 
-          ${isFirstPage
-            ? "cursor-not-allowed opacity-40"
-            : "hover:bg-gray-100"
-           }
-          `}
-          >
-          ←
-          </button>
+              
+              {/* =========================
+    NAVIGATION BUTTONS
+========================= */}
 
-         <button
-              type="button"
-              onClick={handleNext}
-              disabled={isLastPage}
-              className={` flex h-10 w-10 items-center justify-center rounded-full border bg-white shadow-sm transition
+              <div className="mt-6 flex w-full items-center justify-center gap-3 sm:gap-4">
 
-              ${isLastPage
-                ? "cursor-not-allowed opacity-40"
-                : "hover:bg-gray-100"
-                }
-              `}
-             >
-            →
-          </button>
-                  
-          </div>
-          </div>
-          </>
-          )}
+                {/* PREVIOUS */}
+                <button
+                  type="button"
+                  onClick={handlePrevious}
+                  disabled={isFirstPage}
+                  aria-label="Previous products"
+                  className={`
+      flex
+      h-10
+      w-10
+      shrink-0
+      items-center
+      justify-center
+      rounded-full
+      border
+      border-gray-200
+      bg-white
+      text-lg
+      shadow-sm
+      transition
+      duration-200
 
-    </div>
-    </Container>
-    </section>
+      ${isFirstPage
+                      ? "cursor-not-allowed opacity-40"
+                      : "cursor-pointer hover:bg-[#86BC42] hover:text-white"
+                    }
+    `}
+                >
+                  ←
+                </button>
+
+                {/* NEXT */}
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  disabled={isLastPage}
+                  aria-label="Next products"
+                  className={`
+      flex
+      h-10
+      w-10
+      shrink-0
+      items-center
+      justify-center
+      rounded-full
+      border
+      border-gray-200
+      bg-white
+      text-lg
+      shadow-sm
+      transition
+      duration-200
+
+      ${isLastPage
+                      ? "cursor-not-allowed opacity-40"
+                      : "cursor-pointer hover:bg-[#86BC42] hover:text-white"
+                    }
+    `}
+                >
+                  →
+                </button>
+
+              </div>
+              
+
+  </>
+  )}
+  </div>
+  </Container>
+  </section>
   );
 };
 
 export default Discount;
+

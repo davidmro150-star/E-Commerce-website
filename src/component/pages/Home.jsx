@@ -8,6 +8,8 @@ import Products from "../home/Products";
 import TopSelling from "../home/Topselling";
 import Discount from "../home/Discount";
 import LatestBlog from "../home/LatestBlogs";
+import WhatsApp from "../home/whatsApp";
+
 
 const Home = () => {
   return (
@@ -22,7 +24,8 @@ const Home = () => {
       <Categories />
       <TopSelling />
       <Discount />
-      <LatestBlog/>
+      <LatestBlog />
+      <WhatsApp/>
     </>
   );
 };
