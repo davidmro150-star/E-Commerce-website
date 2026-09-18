@@ -12,14 +12,14 @@ const WhatsApp = () => {
   const callUrl = `tel:+${WHATSAPP_NUMBER}`;
 
   return (
-    <section className="bg-[#f7f5ee] py-10 sm:py-12 md:py-14 lg:py-16">
+    <section className="bg-[#86BC42] py-10 sm:py-12 md:py-14 lg:py-16">
     <Container>
         <div className="mx-auto w-full  px-5 sm:px-6 md:px-8 lg:px-10">
-        <div className="flex flex-col items-center justify-between gap-6 rounded-md bg-[#074E37] px-5 py-8 text-center sm:px-8 md:flex-row md:text-left lg:px-12 lg:py-10">
+          <div className="flex flex-col items-center justify-between gap-6 rounded-md px-5 py-8 text-center sm:px-8 md:flex-row md:text-left lg:px-12 lg:py-10 ">
 
             {/* Content */}
         <div>
-              <p className="mb-2 font-jost text-xs font-semibold uppercase tracking-[2px] text-[#86BC42] sm:text-sm">
+              <p className="mb-2 font-jost text-xs font-semibold uppercase tracking-[2px] text-white sm:text-sm">
               Need Help?
               </p>
 
@@ -27,7 +27,7 @@ const WhatsApp = () => {
               Chat With Us on WhatsApp
               </h2>
 
-              <p className="mx-auto mt-3 max-w-[520px] font-jost text-sm leading-6 text-white/75 sm:text-[15px] md:mx-0">
+              <p className="mx-auto mt-3 max-w-[520px] font-jost text-sm leading-6 text-white sm:text-[15px] md:mx-0">
               Have a question about our products or your order? Contact our
               support team anytime.
               </p>
@@ -40,7 +40,7 @@ const WhatsApp = () => {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-[#86BC42] px-6 py-3 font-jost text-sm font-semibold text-white transition-colors duration-200 hover:bg-[#6fa52e] sm:w-auto sm:text-[15px]"
+                className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-[#000] px-6 py-3 font-jost text-sm font-semibold text-white transition-colors duration-200 hover:bg-white hover:text-black sm:w-auto sm:text-[15px]"
               >
                 <svg
                   aria-hidden="true"
@@ -56,7 +56,7 @@ const WhatsApp = () => {
 
               <a
                 href={callUrl}
-                className="inline-flex w-full items-center justify-center gap-3 rounded-full border border-white/30 px-6 py-3 font-jost text-sm font-semibold text-white transition-colors duration-200 hover:border-white hover:bg-white/10 sm:w-auto sm:text-[15px]"
+                className="inline-flex w-full items-center justify-center gap-3 rounded-full border border-white/30 px-6 py-3 font-jost text-sm font-semibold text-white bg-black transition-colors duration-200 hover:border-white hover:bg-white hover:text-black sm:w-auto sm:text-[15px]"
               >
                 <svg
                   aria-hidden="true"
