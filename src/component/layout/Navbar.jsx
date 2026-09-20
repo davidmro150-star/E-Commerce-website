@@ -88,7 +88,6 @@ const Navbar = ({ mobileMenu }) => {
               ref={pagesRef}
               className="relative list-none"
               onMouseEnter={() => setPagesOpen(true)}
-              onMouseLeave={() => setPagesOpen(false)}
             >
               <button
                 type="button"
