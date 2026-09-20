@@ -29,9 +29,5 @@ export const navitems = [
     url: "/lookbook",
   },
 
-  {
-    id: 6,
-    name: "PAGES",
-    url: "/pages",
-  },
+  
 ];

@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { navitems } from "../../api/navbardata";
 import { Link } from "react-router";
+import { ChevronDown } from "lucide-react";
 import Container from "../ui/Container";
 
 const Navbar = ({ mobileMenu }) => {
+  const [pagesOpen, setPagesOpen] = useState(false);
+  const pagesRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        pagesRef.current &&
+        !pagesRef.current.contains(event.target)
+      ) {
+        setPagesOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <section
       className={`
@@ -14,7 +35,6 @@ const Navbar = ({ mobileMenu }) => {
       `}
     >
       <Container>
-
         <ul
           className="
             flex
@@ -63,13 +83,148 @@ const Navbar = ({ mobileMenu }) => {
               </li>
             ))}
 
+            {/* PAGES DROPDOWN */}
+            <li
+              ref={pagesRef}
+              className="relative list-none"
+              onMouseEnter={() => setPagesOpen(true)}
+              onMouseLeave={() => setPagesOpen(false)}
+            >
+              <button
+                type="button"
+                onClick={() => setPagesOpen(!pagesOpen)}
+                className="
+                  flex
+                  items-center
+                  gap-1
+                  whitespace-nowrap
+                  font-jost
+                  text-primary-white
+                  font-medium
+                  text-xs
+                  sm:text-sm
+                  md:text-sm
+                  lg:text-base
+                "
+              >
+                PAGES
+
+                <ChevronDown
+                  size={16}
+                  className={`
+                    transition-transform
+                    duration-200
+                    ${pagesOpen ? "rotate-180" : ""}
+                  `}
+                />
+              </button>
+
+              {/* DROPDOWN */}
+              {pagesOpen && (
+                <div
+                  className="
+                    absolute
+                    left-0
+                    top-full
+                    z-50
+                    mt-3
+                    w-52
+                    rounded-lg
+                    border
+                    border-gray-100
+                    bg-white
+                    p-2
+                    shadow-lg
+                  "
+                >
+                  <Link
+                    to="/about-us"
+                    onClick={() => setPagesOpen(false)}
+                    className="
+                      block
+                      rounded-md
+                      px-4
+                      py-3
+                      font-jost
+                      text-sm
+                      text-gray-700
+                      transition
+                      hover:bg-[#E8EFE8]
+                      hover:text-[#074E37]
+                    "
+                  >
+                    About Us
+                  </Link>
+
+                  <Link
+                    to="/contact-us"
+                    onClick={() => setPagesOpen(false)}
+                    className="
+                      block
+                      rounded-md
+                      px-4
+                      py-3
+                      font-jost
+                      text-sm
+                      text-gray-700
+                      transition
+                      hover:bg-[#E8EFE8]
+                      hover:text-[#074E37]
+                    "
+                  >
+                    Contact Us
+                  </Link>
+
+                  <Link
+                    to="/faq"
+                    onClick={() => setPagesOpen(false)}
+                    className="
+                      block
+                      rounded-md
+                      px-4
+                      py-3
+                      font-jost
+                      text-sm
+                      text-gray-700
+                      transition
+                      hover:bg-[#E8EFE8]
+                      hover:text-[#074E37]
+                    "
+                  >
+                    FAQ
+                  </Link>
+
+                  <Link
+                    to="/wishlist"
+                    onClick={() => setPagesOpen(false)}
+                    className="
+                      block
+                      rounded-md
+                      px-4
+                      py-3
+                      font-jost
+                      text-sm
+                      text-gray-700
+                      transition
+                      hover:bg-[#E8EFE8]
+                      hover:text-[#074E37]
+                    "
+                  >
+                    Wishlist
+                  </Link>
+                </div>
+              )}
+            </li>
+
           </div>
 
 
           {/* RIGHT SIDE */}
           <div className="flex items-center gap-10">
 
-            <li
+            {/* SPECIAL OFFER */}
+            <Link
+              to="/special-offers"
               className="
                 shrink-0
                 list-none
@@ -81,11 +236,14 @@ const Navbar = ({ mobileMenu }) => {
                 sm:text-sm
                 md:text-sm
                 lg:text-base
+                transition
+                hover:opacity-80
               "
             >
               SPECIAL OFFER
-            </li>
+            </Link>
 
+            {/* PURCHASE THEME */}
             <li
               className="
                 shrink-0
@@ -106,7 +264,6 @@ const Navbar = ({ mobileMenu }) => {
           </div>
 
         </ul>
-
       </Container>
     </section>
   );

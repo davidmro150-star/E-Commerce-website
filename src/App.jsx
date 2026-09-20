@@ -12,6 +12,8 @@ import Shop from "./shop/shop";
 import JournalPage from "./component/journal/JournalPage";
 import Collection from "./component/collection/Collection";
 import Lookbook from "./component/lookbook/LookBook";
+import AboutUs from "./component/pagesnavbar/About";
+import ContactUs from "./component/pagesnavbar/ContactUs";
 
 
 
@@ -48,6 +50,15 @@ const App = () => {
           path: "/lookbook",
           element: <Lookbook />,
         },
+        {
+          path: "/about-us",
+          element: <AboutUs />,
+        },
+        {
+          path: "/contact-us",
+          element: <ContactUs />,
+        },
+        
       ],
     },
   ]);
