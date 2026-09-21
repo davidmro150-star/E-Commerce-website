@@ -14,6 +14,7 @@ import Collection from "./component/collection/Collection";
 import Lookbook from "./component/lookbook/LookBook";
 import AboutUs from "./component/pagesnavbar/About";
 import ContactUs from "./component/pagesnavbar/ContactUs";
+import FAQ from "./component/pagesnavbar/FAQ";
 
 
 
@@ -58,6 +59,13 @@ const App = () => {
           path: "/contact-us",
           element: <ContactUs />,
         },
+        {
+          path: "/faq",
+          element: <FAQ />,
+        },
+
+  
+
         
       ],
     },
