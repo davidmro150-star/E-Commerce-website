@@ -15,6 +15,7 @@ import Lookbook from "./component/lookbook/LookBook";
 import AboutUs from "./component/pagesnavbar/About";
 import ContactUs from "./component/pagesnavbar/ContactUs";
 import FAQ from "./component/pagesnavbar/FAQ";
+import Wishlist from "./component/pagesnavbar/Wishlist";
 
 
 
@@ -62,6 +63,10 @@ const App = () => {
         {
           path: "/faq",
           element: <FAQ />,
+        },
+        {
+          path: "/wishlist",
+          element: <Wishlist />,
         },
 
   
