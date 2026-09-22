@@ -17,6 +17,8 @@ import ContactUs from "./component/pagesnavbar/ContactUs";
 import FAQ from "./component/pagesnavbar/FAQ";
 import Wishlist from "./component/pagesnavbar/Wishlist";
 import MyAccount from "./component/footer/myAccount";
+import ShoppingCart from "./component/footer/ShoppingCartPage";
+import ShoppingCartPage from "./component/footer/ShoppingCartPage";
 
 
 
@@ -72,6 +74,10 @@ const App = () => {
         {
           path: "/account",
           element: <MyAccount />,
+        },
+        {
+          path: "/cart",
+          element: <ShoppingCartPage />,
         },
   
 
