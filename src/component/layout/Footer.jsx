@@ -99,7 +99,7 @@ const Footer = () => {
 
                   <li>
                     <Link
-                      to="/about"
+                      to="/about-us"
                       className="transition-colors hover:text-[#86BC42]"
                     >
                       About Us
@@ -108,7 +108,7 @@ const Footer = () => {
 
                   <li>
                     <Link
-                      to="/contact"
+                      to="/contact-us"
                       className="transition-colors hover:text-[#86BC42]"
                     >
                       Contact Us

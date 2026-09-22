@@ -16,6 +16,7 @@ import AboutUs from "./component/pagesnavbar/About";
 import ContactUs from "./component/pagesnavbar/ContactUs";
 import FAQ from "./component/pagesnavbar/FAQ";
 import Wishlist from "./component/pagesnavbar/Wishlist";
+import MyAccount from "./component/footer/myAccount";
 
 
 
@@ -68,7 +69,10 @@ const App = () => {
           path: "/wishlist",
           element: <Wishlist />,
         },
-
+        {
+          path: "/account",
+          element: <MyAccount />,
+        },
   
 
         
