@@ -20,6 +20,7 @@ import MyAccount from "./component/footer/myAccount";
 import ShoppingCart from "./component/footer/ShoppingCartPage";
 import ShoppingCartPage from "./component/footer/ShoppingCartPage";
 import ShippingPolicy from "./component/footer/ShippingPolicy";
+import ReturnPolicy from "./component/footer/ReturnPolicy";
 
 
 
@@ -83,6 +84,10 @@ const App = () => {
         {
           path: "/shipping-policy",
           element: <ShippingPolicy />,
+        },
+        {
+          path: "/return-policy",
+          element: <ReturnPolicy />,
         },
 
         
