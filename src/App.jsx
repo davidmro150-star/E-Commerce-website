@@ -19,6 +19,7 @@ import Wishlist from "./component/pagesnavbar/Wishlist";
 import MyAccount from "./component/footer/myAccount";
 import ShoppingCart from "./component/footer/ShoppingCartPage";
 import ShoppingCartPage from "./component/footer/ShoppingCartPage";
+import ShippingPolicy from "./component/footer/ShippingPolicy";
 
 
 
@@ -79,7 +80,10 @@ const App = () => {
           path: "/cart",
           element: <ShoppingCartPage />,
         },
-  
+        {
+          path: "/shipping-policy",
+          element: <ShippingPolicy />,
+        },
 
         
       ],
